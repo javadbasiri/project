@@ -1,20 +1,29 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './app/App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import App from "./app/App";
+import reportWebVitals from "./reportWebVitals";
+import fa_IR from "antd/lib/locale/fa_IR";
+import { BrowserRouter } from "react-router-dom";
+import { ConfigProvider } from "antd";
 
-
-const container = document.getElementById('root')!;
+const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <ConfigProvider
+        virtual={false}
+        form={{ validateMessages: { required: "الزامی" } }}
+        locale={fa_IR}
+        direction="rtl"
+      >
+        <App />
+      </ConfigProvider>
     </Provider>
-  </React.StrictMode>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
